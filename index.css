@@ -57,10 +57,10 @@ main{
   color: #fff;
   min-height: 100vh;
   margin: 20px;
-  margin-top: 20px;
+  margin-top: 70px;
   display: flex;
   flex-flow: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   width: 100%;
 }
@@ -128,6 +128,50 @@ min-height: 70px;
   grid-area: div;
 }
 
+#LoginForm{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#LoginForm input {
+  background: #fff;
+  padding: 10px;
+}
+
+#LoginForm button{
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background: var(--rich-black);
+  font-weight: bold;
+  outline: none;
+  color: #eee;
+  border: none;
+}
+
+#GoogleLogin{
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  background: var(--rich-black);
+  color: #eee;
+  font-weight: bold;
+  outline: none;
+  border: none;
+}
+
+.status{
+  position: relative;
+  top: 15px;
+  min-width: 60px;
+  max-width: 150px;
+  padding: 7px;
+  border-radius: 6px;
+  background: #eee;
+  color: #333;
+}
 @media only screen and (max-width: 600px) {
   header{
     position: fixed;
