@@ -24,13 +24,13 @@ function AuthStateChanged() {
     user = u;
     if (u) {
       console.log("User logged in:", u.email);
-      if (window.location.pathname === "AttandanceSys/Login.html") {
-        window.location.pathname = "AttandanceSys/";
+      if (window.location.href == "https://anuj2025.github.io/AttandanceSys/Login.html")
+      { window.location.href = "https://anuj2025.github.io/AttandanceSys/";
       }
     } else {
       console.log("No user logged in.");
-      if (window.location.pathname !== "AttandanceSys/Login.html") {
-        window.location.pathname = "AttandanceSys/Login.html";
+      if (window.location.href == "https://anuj2025.github.io/AttandanceSys/")
+      { window.location.href = "https://anuj2025.github.io/AttandanceSys/Login.html";
       }
     }
   });
