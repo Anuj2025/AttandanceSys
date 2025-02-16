@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider,
+signInWithPopup} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, collection, addDoc, getDocs, doc, setDoc, query, where, onSnapshot, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // **Firebase Config**
@@ -18,8 +19,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 let user = null;
 
-// **Monitor Authentication State**
-function AuthStateChanged() {
+// **Monitor Authentication State**function AuthStateChanged() {
   onAuthStateChanged(auth, (u) => {
     user = u;
     if (u) {
@@ -36,6 +36,19 @@ function AuthStateChanged() {
   });
 }
 
+
+// login with Google 
+
+async function GoogleCreateAccount() {
+  const provider = new GoogleAuthProvider();
+  try {
+    const result = await signInWithPopup(auth, provider);
+    user = result.user;
+  } catch (e) {
+   alert(e.message)
+  }
+}
+
 // **Generate a Random ID**
 function generateID(length = 10) {
   const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -50,6 +63,8 @@ async function addUser() {
   }
 
   const name = document.querySelector("#name").value.trim();
+  const status = document.querySelector("#status").value.trim();
+  
   if (!name) {
     alert("Please enter a name.");
     return;
@@ -63,6 +78,7 @@ async function addUser() {
     await setDoc(doc(db, userCollection, studentID), {
       name: name,
       date: new Date().toISOString(),
+      stat: status,
     });
 
     alert("Student added successfully!");
@@ -100,29 +116,31 @@ function updateList() {
           <div class="table-content">
             <h3>${student.name}</h3>
             <div class="table-Date">${new Date(student.date).toLocaleString()}</div>
-            <button class="button-2" onclick="markAttendance('${doc.id}', 'present')">Present</button>
-            <button class="button-2" onclick="markAttendance('${doc.id}', 'absent')">Absent</button>
+            <div class="status">${student.stat}</div>
           </div>
         `;
       });
     }
   }, (error) => {
     alert("Error fetching students: " + error.message);
+    table.innerHTML = `Nothing Found`
   });
 }
 
 
 
 // **Mark Attendance**
-async function markAttendance(status) {
+async function markAttendance(studentID, status) {
   if (!user) return;
-const studentID = prompt("Student Name")
   const formattedDate = new Date().toISOString().split("T")[0];
 
-  const userCollection = `${user.email.split("@")[0]}/students/${formattedDate}`;
+  const userCollection = `${user.email.split("@")[0]}/students/${formattedDate}/${StudentId}`;
   try {
-    await setDoc(doc(db, userCollection, studentID), { attendance: status }, { merge: true });
-    alert(`Marked as ${status}`);
+    const ref = doc(db, userCollection, StudentId);
+    await updateDoc(ref, {
+      attendance: status,
+      })
+    alert("status added")
     updateList();
   } catch (e) {
     alert("Error updating attendance: " + e.message);
@@ -165,8 +183,21 @@ window.onload = () => {
   const loginForm = document.querySelector("#LoginForm");
  const presentBtn = document.querySelector("#present")
  const absentBtn = document.querySelector("#absent")
+ const GoogleLogin = document.querySelector("#GoogleLogin")
  
- if (presentBtn) presentBtn.addEventListener("click", () => markAttendance("present"))
+ if (user) {
+   loginForm.innerText = "userFound";
+ }
+ 
+ 
+ if (presentBtn) presentBtn.addEventListener("click", () => {
+   const studentID = button.getAttribute("data-id");
+  const status = button.getAttribute("data-type");
+  console.log(studentID, status)
+    markAttendance(studentID, status)
+ })
+
+if (GoogleLogin) GoogleLogin.addEventListener("click", GoogleCreateAccount)
 
   if (addUserBtn) addUserBtn.addEventListener("click", addUser);
 
