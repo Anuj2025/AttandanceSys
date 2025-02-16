@@ -1,4 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider,
 signInWithPopup} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, collection, addDoc, getDocs, doc, setDoc, query, where, onSnapshot, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -19,7 +19,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 let user = null;
 
-// **Monitor Authentication State**function AuthStateChanged() {
+function AuthStateChanged() {
   onAuthStateChanged(auth, (u) => {
     user = u;
     if (u) {
@@ -35,7 +35,6 @@ let user = null;
     }
   });
 }
-
 
 // login with Google 
 
