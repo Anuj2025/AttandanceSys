@@ -35,6 +35,24 @@ header{
   grid-area: navbar;
   border-bottom: 1px solid #eeee;
   z-index: 50;
+  display: flex;
+  justify-content: space-between;
+}
+
+header a{
+  padding-right: 50px;
+  text-decoration: none;
+  color: #eee;
+}
+
+
+.Box{
+  width: 290px;
+  height: auto;
+  background: var(--cadet-gray);
+  padding: 10px;
+  color: #333;
+  border-radius: 8px;
 }
 
 input {
