@@ -24,13 +24,13 @@ function AuthStateChanged() {
     user = u;
     if (u) {
       console.log("User logged in:", u.email);
-      if (window.location.pathname === "/Login.html") {
-        window.location.pathname = "/";
+      if (window.location.pathname === "AttandanceSys/Login.html") {
+        window.location.pathname = "AttandanceSys/";
       }
     } else {
       console.log("No user logged in.");
-      if (window.location.pathname !== "/Login.html") {
-        window.location.pathname = "/Login.html";
+      if (window.location.pathname !== "AttandanceSys/Login.html") {
+        window.location.pathname = "AttandanceSys/Login.html";
       }
     }
   });
