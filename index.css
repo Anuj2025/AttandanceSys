@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+*{
+  margin: 0;
+}
+
+:root{
+--rich-black: #141B23ff;
+--rich-black-2: #0D1017ff;
+--black: #010408ff;
+--cadet-gray: #9097A1ff;
+--cadet-gray-2: #879F9Cff;
+}
+
+body{
+  font-family: "Roboto", serif;
+  font-optical-sizing: auto;
+  display: flex;
+  flex-direction: columnv;
+  min-height: 100vh;
+  background: var(--black);
+  color: #eee;
+}
+
+header{
+  width: 100%;
+  height: auto;
+  position: fixed;
+  padding: 20px;
+  height: 20px;
+  background: var(--rich-black);
+  color: #fefefe;
+  font-weight: bold;
+  grid-area: navbar;
+  border-bottom: 1px solid #eeee;
+  z-index: 50;
+}
+
+input {
+  width: 90%;
+  padding: 5px;
+  background: var(--rich-black-2);
+  margin: 10px;
+  border: 2px solid lightgray;
+  border-radius: 5px;
+  transition: 1s ease;
+  outline: none;
+color: #eeee;
+}
+
+input:hover{
+  border: 2px solid lightgreen;
+  color: #fff;
+}
+main{
+  color: #fff;
+  min-height: 100vh;
+  margin: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#table {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  width: 300px;
+  height: 400px;
+  margin-top: 20px;
+  border-radius: 10px;
+  background: var(--rich-black-2);
+  padding: 10px;
+  border: 1px solid var(--cadet-gray);
+  overflow: scroll;
+}
+
+.table-content {
+  margin-top: 10px;
+}
+.table-Date{
+  font-size: 10px;
+}
+
+.button-2 {
+  background-color: #eeee;
+  border-radius: 8px;
+  border-width: 0;
+  color: #333333;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 5px 12px;
+  text-align: center;
+  transition: all 200ms;
+  vertical-align: baseline;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-top: 20px;
+}
+
+.table-content{
+  width: 93%;
+min-height: 70px;
+  border: 1px solid #eeee;
+  padding: 10px;
+  border-radius: 10px;
+}
+.table-Date{
+  position: relative;
+  top: 40%; 
+  float: right;
+  right: 10px;
+}
+#table div{
+  grid-area: div;
+}
+
+@media only screen and (max-width: 600px) {
+  header{
+    position: fixed;
+    width: 100%;
+  }
+}
